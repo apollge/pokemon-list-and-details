@@ -1,0 +1,14 @@
+schema: https://graphql-pokemon2.vercel.app/
+documents: "./graphql/**/*.ts"
+generates:
+  ./graphql/generated.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-query
+    config:
+      fetcher:
+        endpoint: "process.env.NEXT_PUBLIC_ENDPOINT_URL"
+        fetchParams:
+          headers:
+            Content-Type: application/json
