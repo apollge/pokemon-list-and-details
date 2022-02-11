@@ -14,6 +14,7 @@ const FormTheme: ComponentMultiStyleConfig = {
       borderColor: "transparent",
       color: "white",
       fontSize: "1.125rem",
+      fontWeight: "semibold",
       minHeight: "3.75rem",
       _focus: {
         boxShadow: "none",
@@ -29,6 +30,7 @@ const FormTheme: ComponentMultiStyleConfig = {
       bg: "primary.light",
       color: "white",
       fontSize: "1.125rem",
+      fontWeight: "bold",
       minHeight: "3.75rem",
     },
   },

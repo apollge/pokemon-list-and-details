@@ -11,7 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { UserSchema, userSchema } from "../validations/userSchema";
+import { userSchema } from "../validations/userSchema";
 
 const LoginForm: FC = () => {
   const router = useRouter();

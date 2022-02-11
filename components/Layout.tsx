@@ -1,30 +1,15 @@
-import React, { FC, ReactNode } from "react";
 import {
-  IconButton,
   Box,
-  Flex,
-  Icon,
-  useColorModeValue,
   Drawer,
   DrawerContent,
-  Text,
-  useDisclosure,
-  BoxProps,
+  Flex,
   FlexProps,
+  IconButton,
   SimpleGrid,
+  useDisclosure,
 } from "@chakra-ui/react";
+import React, { FC, ReactNode } from "react";
 import { PokemonList } from "../modules/pokemon/components/PokemonList";
-
-interface LinkItemProps {
-  name: string;
-}
-export const LinkItems: Array<LinkItemProps> = [
-  { name: "Home" },
-  { name: "Trending" },
-  { name: "Explore" },
-  { name: "Favourites" },
-  { name: "Settings" },
-];
 
 interface LayoutProps {
   children: ReactNode;
@@ -37,22 +22,14 @@ const Layout: FC<LayoutProps> = ({ children }) => {
     <Flex minH="100vh" align={"center"} justify={"center"} bg="#484D57">
       <Box
         height="100%"
-        maxHeight="46.0625rem"
-        maxWidth="74.875rem"
+        maxWidth={{ base: "auto", md: "74.875rem" }}
         mx="auto"
+        paddingY={{ base: 0, md: "3rem" }}
+        paddingX={{ base: "1rem", md: 0 }}
+        marginX={{ base: 0, md: "3rem" }}
         width="100%"
         borderRadius="lg"
       >
-        <SimpleGrid gridTemplateColumns="max-content 1fr">
-          <PokemonList
-            onClose={() => onClose}
-            display={{ base: "none", md: "block" }}
-          />
-          <Box p="4" bg="#3B3E46">
-            {children}
-          </Box>
-        </SimpleGrid>
-
         {/* Mobile Nav */}
         <Drawer
           autoFocus={false}
@@ -69,6 +46,27 @@ const Layout: FC<LayoutProps> = ({ children }) => {
         </Drawer>
 
         <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
+
+        <SimpleGrid
+          gridTemplateColumns="max-content 1fr"
+          display={{ base: "block", md: "grid" }}
+        >
+          <PokemonList
+            onClose={() => onClose}
+            display={{ base: "none", md: "block" }}
+          />
+          <Box
+            bg="#3B3E46"
+            borderTopRightRadius="lg"
+            borderBottomRightRadius="lg"
+            borderTopLeftRadius={{ base: "lg", md: "none" }}
+            borderBottomLeftRadius={{ base: "lg", md: "none" }}
+            width="100%"
+            minHeight={{ base: "22.5rem", md: "auto" }}
+          >
+            {children}
+          </Box>
+        </SimpleGrid>
       </Box>
     </Flex>
   );
@@ -76,27 +74,18 @@ const Layout: FC<LayoutProps> = ({ children }) => {
 
 export default Layout;
 
-interface MobileProps extends FlexProps {
+interface MobileNavProps extends FlexProps {
   onOpen: () => void;
 }
 
-const MobileNav: FC<MobileProps> = ({ onOpen, ...rest }) => {
+const MobileNav: FC<MobileNavProps> = ({ onOpen, ...rest }) => {
   return (
-    <Flex
-      ml={{ base: 0, md: 60 }}
-      px={{ base: 4, md: 24 }}
-      height="20"
-      alignItems="center"
-      justifyContent="flex-start"
-      {...rest}
-    >
+    <Flex height="20" alignItems="center" justifyContent="flex-end" {...rest}>
       <IconButton
         aria-label="burger menu"
-        borderColor="gray.100"
-        variant="outline"
-        onClick={onOpen}
         icon={<i className="fas fa-bars" />}
-      ></IconButton>
+        onClick={onOpen}
+      />
     </Flex>
   );
 };

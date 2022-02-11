@@ -22,6 +22,10 @@ const theme = extendTheme({
       light: "#F2C94C",
       dark: "#EFBB1C",
     },
+    secondary: {
+      light: "#EDEDED",
+      dark: "#EEECEC",
+    },
     alert: {
       warning: "#E53E3E",
     },
